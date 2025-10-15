@@ -1,0 +1,748 @@
+
+
+/* Ghost CSS Variables */
+:root {
+  --color-white: #fff;
+  --color-lighter-gray: rgb(0 0 0 / 0.05);
+  --color-light-gray: #e6e6e6;
+  --color-mid-gray: #ccc;
+  --color-dark-gray: #444;
+  --color-darker-gray: #15171a;
+  --color-black: #000;
+  --color-primary-text: var(--color-darker-gray);
+  --color-secondary-text: rgb(0 0 0 / 0.55);
+  --color-border: rgb(0 0 0 / 0.08);
+  --color-dark-border: rgb(0 0 0 / 0.55);
+  --ghost-accent-color: #15171a;
+}
+
+/* Dark mode variables */
+.dark {
+  --color-lighter-gray: rgb(255 255 255 / 0.1);
+  --color-darker-gray: #fff;
+  --color-secondary-text: rgb(255 255 255 / 0.64);
+  --color-border: rgb(255 255 255 / 0.15);
+  --color-dark-border: rgb(255 255 255 / 0.5);
+  --color-primary-text: #fff;
+}
+
+/* Ghost Post Typography - Based on official Ghost CSS */
+
+.ghost-post {
+  
+  color: var(--color-primary-text);
+  word-wrap: break-word;
+  font-size: 1.2rem;
+}
+
+/* Headers */
+.ghost-post h1,
+.ghost-post h2,
+.ghost-post h3,
+.ghost-post h4,
+.ghost-post h5,
+.ghost-post h6 {
+  margin: 0 0 2rem 0;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-darker-gray);
+  word-wrap: break-word;
+}
+
+.ghost-post h1 {
+  font-size: 3.6rem;
+  line-height: 1.2;
+}
+
+.ghost-post h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.ghost-post h3 {
+  font-size: 2.4rem;
+  line-height: 1.3;
+}
+
+.ghost-post h4 {
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+.ghost-post h5 {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.ghost-post h6 {
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+/* Paragraphs */
+.ghost-post p {
+  margin: 0 0 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--color-primary-text);
+}
+
+.ghost-post p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links */
+.ghost-post a {
+  color: var(--color-darker-gray);
+  text-decoration: underline;
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.2rem;
+  transition: opacity 0.2s ease;
+}
+
+.ghost-post a:hover {
+  opacity: 0.8;
+  text-decoration-thickness: 0.15rem;
+}
+
+/* Lists */
+.ghost-post ul,
+.ghost-post ol {
+  margin: 0 0 2rem 0;
+  padding-left: 3rem;
+}
+
+.ghost-post li {
+  margin: 0 0 1rem 0;
+  
+  line-height: 1.7;
+  color: var(--color-primary-text);
+}
+
+.ghost-post li:last-child {
+  margin-bottom: 0;
+}
+
+.ghost-post ul li {
+  list-style-type: disc;
+}
+
+.ghost-post ol li {
+  list-style-type: decimal;
+}
+
+.ghost-post ul ul,
+.ghost-post ol ol,
+.ghost-post ul ol,
+.ghost-post ol ul {
+  margin: 1rem 0 0 0;
+}
+
+/* Blockquotes */
+.ghost-post blockquote {
+  margin: 2rem 0;
+  padding: 2rem 3rem;
+  border-left: 4px solid var(--color-border);
+  background-color: var(--color-lighter-gray);
+  border-radius: 0 0.8rem 0.8rem 0;
+}
+
+.ghost-post blockquote p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--color-secondary-text);
+}
+
+.ghost-post blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.ghost-post blockquote cite {
+  display: block;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-darker-gray);
+  margin-top: 1.5rem;
+}
+
+.ghost-post blockquote cite:before {
+  content: "— ";
+}
+
+/* Code */
+.ghost-post code {
+  font-family: var(--font-mono, 'JetBrains Mono', Menlo, Consolas, Monaco, monospace);
+  background-color: var(--color-lighter-gray);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+  color: var(--color-darker-gray);
+}
+
+.ghost-post pre {
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: var(--color-darker-gray);
+  border-radius: 0.8rem;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.ghost-post pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: var(--color-white);
+  font-size: inherit;
+}
+
+/* Tables */
+.ghost-post table {
+  margin: 2rem 0;
+  width: 100%;
+  border-collapse: collapse;
+  line-height: 1.5;
+}
+
+.ghost-post th,
+.ghost-post td {
+  padding: 1.2rem 1.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ghost-post th {
+  font-weight: 600;
+  color: var(--color-darker-gray);
+  background-color: var(--color-lighter-gray);
+}
+
+.ghost-post td {
+  color: var(--color-primary-text);
+}
+
+.ghost-post tbody tr:hover {
+  background-color: var(--color-lighter-gray);
+}
+
+/* Horizontal Rule */
+.ghost-post hr {
+  margin: 3rem 0;
+  height: 1px;
+  background-color: var(--color-border);
+  border: 0;
+}
+
+/* Emphasis */
+.ghost-post strong,
+.ghost-post b {
+  font-weight: 700;
+  color: var(--color-darker-gray);
+}
+
+.ghost-post em,
+.ghost-post i {
+  font-style: italic;
+}
+
+/* Small text */
+.ghost-post small {
+  font-size: 1.0rem;
+  line-height: 1.6;
+  color: var(--color-secondary-text);
+}
+
+/* Mark/highlight */
+.ghost-post mark {
+  background-color: rgba(255, 235, 59, 0.3);
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.2rem;
+}
+
+/* Subscript and Superscript */
+.ghost-post sub,
+.ghost-post sup {
+  font-size: 1.0rem;
+  line-height: 1;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.ghost-post sup {
+  top: -0.5em;
+}
+
+.ghost-post sub {
+  bottom: -0.25em;
+}
+
+/* Images in content */
+.ghost-post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+  margin: 2rem 0;
+}
+
+/* Figure elements */
+.ghost-post figure {
+  margin: 2rem 0;
+}
+
+.ghost-post figcaption {
+  margin-top: 1rem;
+  font-size: 1.0rem;
+  line-height: 1.6;
+  color: var(--color-secondary-text);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Address */
+.ghost-post address {
+  font-style: italic;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--color-lighter-gray);
+  border-radius: 0.8rem;
+  border-left: 4px solid var(--color-border);
+}
+
+/* Definition lists */
+.ghost-post dl {
+  margin: 2rem 0;
+}
+
+.ghost-post dt {
+  font-weight: 600;
+  color: var(--color-darker-gray);
+  margin-bottom: 0.5rem;
+}
+
+.ghost-post dd {
+  margin: 0 0 1.5rem 2rem;
+  color: var(--color-primary-text);
+}
+
+/* Abbreviations */
+.ghost-post abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Keyboard input */
+.ghost-post kbd {
+  font-size: 1.0rem;
+  font-family: var(--font-mono, 'JetBrains Mono', Menlo, Consolas, Monaco, monospace);
+  background-color: var(--color-lighter-gray);
+  border: 1px solid var(--color-border);
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.4rem;
+  box-shadow: 0 1px 0 var(--color-border);
+}
+
+/* Sample output */
+.ghost-post samp {
+  font-family: var(--font-mono, 'JetBrains Mono', Menlo, Consolas, Monaco, monospace);
+  background-color: var(--color-lighter-gray);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+}
+
+/* Variable */
+.ghost-post var {
+  font-style: italic;
+  color: var(--color-darker-gray);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .ghost-post {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .ghost-post h1 {
+    font-size: 2.4rem;
+  }
+  
+  .ghost-post h2 {
+    font-size: 2.0rem;
+  }
+  
+  .ghost-post h3 {
+    font-size: 1.8rem;
+  }
+  
+  .ghost-post h4 {
+    font-size: 1.6rem;
+  }
+  
+  .ghost-post h5 {
+    font-size: 1.4rem;
+  }
+  
+  .ghost-post h6 {
+    font-size: 1.2rem;
+  }
+  
+  .ghost-post p,
+  .ghost-post li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .ghost-post ul,
+  .ghost-post ol {
+    padding-left: 2rem;
+  }
+  
+  .ghost-post blockquote {
+    padding: 1.5rem 2rem;
+  }
+  
+  .ghost-post th,
+  .ghost-post td {
+    padding: 0.8rem 1rem;
+    font-size: 1.0rem;
+  }
+}
+
+
+/* Ghost Koenig Editor Card Styles - Based on official Ghost CSS */
+
+/* Base card styles */
+.kg-card {
+  margin: 3.2rem 0;
+}
+
+/* Image Cards */
+.kg-image-card {
+  margin: 3.2rem 0;
+}
+
+.kg-image-card img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+.kg-image-card figcaption {
+  padding: 1.6rem 0 0;
+  font-size: 1.0rem;
+  line-height: 1.6;
+  color: var(--color-secondary-text);
+  text-align: center;
+}
+
+/* Gallery Cards */
+.kg-gallery-card {
+  margin: 3.2rem 0;
+}
+
+.kg-gallery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.kg-gallery-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.kg-gallery-image {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.kg-gallery-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kg-gallery-row:not(.kg-gallery-row:first-of-type) .kg-gallery-image {
+  max-height: 200px;
+}
+
+/* Bookmark Cards */
+.kg-bookmark-card {
+  margin: 3.2rem 0;
+}
+
+.kg-bookmark-container {
+  display: flex;
+  min-height: 12rem;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.kg-bookmark-container:hover {
+  box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+.kg-bookmark-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+.kg-bookmark-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-darker-gray);
+  margin: 0 0 1.2rem 0;
+}
+
+.kg-bookmark-description {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--color-secondary-text);
+  margin: 0 0 1.6rem 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.kg-bookmark-metadata {
+  display: flex;
+  align-items: center;
+  font-size: 1.0rem;
+  font-weight: 500;
+  color: var(--color-darker-gray);
+  margin-top: auto;
+  gap: 1.6rem;
+}
+
+.kg-bookmark-icon {
+  width: 2.0rem;
+  height: 2.0rem;
+  margin-right: 0.8rem;
+}
+
+.kg-bookmark-author,
+.kg-bookmark-publisher {
+  color: var(--color-darker-gray);
+  font-weight: 600;
+}
+
+.kg-bookmark-author:after,
+.kg-bookmark-publisher:after {
+  content: "•";
+  margin: 0 1.6rem;
+  color: var(--color-secondary-text);
+}
+
+.kg-bookmark-author:last-of-type:after,
+.kg-bookmark-publisher:last-of-type:after {
+  display: none;
+}
+
+.kg-bookmark-thumbnail {
+  position: relative;
+  min-width: 33%;
+  max-height: 100%;
+}
+
+.kg-bookmark-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Button Cards */
+.kg-button-card {
+  margin: 3.2rem 0;
+  text-align: center;
+}
+
+.kg-button-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--ghost-accent-color, #15171a);
+  border-radius: 100px;
+  transition: opacity 0.2s ease;
+}
+
+.kg-button-card a:hover {
+  opacity: 0.9;
+}
+
+/* Callout Cards */
+.kg-callout-card {
+  margin: 3.2rem 0;
+  padding: 2rem;
+  border-left: 4px solid;
+  border-radius: 0.8rem;
+}
+
+.kg-callout-card[data-callout="info"] {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left-color: #3b82f6;
+}
+
+.kg-callout-card[data-callout="warning"] {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-left-color: #f59e0b;
+}
+
+.kg-callout-card[data-callout="error"] {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left-color: #ef4444;
+}
+
+.kg-callout-card[data-callout="success"] {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-left-color: #22c55e;
+}
+
+/* Toggle Cards */
+.kg-toggle-card {
+  margin: 3.2rem 0;
+}
+
+.kg-toggle-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-darker-gray);
+  cursor: pointer;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.kg-toggle-heading:hover {
+  opacity: 0.8;
+}
+
+.kg-toggle-content {
+  padding: 2rem 0;
+  color: var(--color-primary-text);
+}
+
+/* File Cards */
+.kg-file-card {
+  margin: 3.2rem 0;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+}
+
+.kg-file-card a {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  color: inherit;
+  text-decoration: none;
+  padding: 1.2rem;
+  border-radius: 0.8rem;
+  transition: background-color 0.2s ease;
+}
+
+.kg-file-card a:hover {
+  background-color: var(--color-lighter-gray);
+}
+
+.kg-file-card-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--color-lighter-gray);
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kg-file-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-darker-gray);
+}
+    
+.kg-file-card-caption {
+  font-size: 1.0rem;
+  color: var(--color-secondary-text);
+}
+
+/* Video Cards */
+.kg-video-card {
+  margin: 3.2rem 0;
+}
+
+.kg-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+
+/* Audio Cards */
+.kg-audio-card {
+  margin: 3.2rem 0;
+}
+
+.kg-audio-card audio {
+  display: block;
+  width: 100%;
+}
+
+/* Product Cards */
+.kg-product-card {
+  margin: 3.2rem 0;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+}
+
+/* HTML Cards */
+.kg-html-card {
+  margin: 3.2rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .kg-bookmark-container {
+    flex-direction: column;
+  }
+  
+  .kg-bookmark-thumbnail {
+    min-width: 100%;
+    height: 20rem;
+  }
+  
+  .kg-gallery-row {
+    flex-direction: column;
+  }
+  
+  .kg-gallery-image {
+    max-height: 25rem;
+  }
+}
