@@ -65,6 +65,36 @@ declare module '@tryghost/content-api' {
     slug?: string
   }
 
+  export interface GhostSettings {
+    title: string
+    description: string
+    logo?: string
+    icon?: string
+    accent_color?: string
+    cover_image?: string
+    facebook?: string
+    twitter?: string
+    lang: string
+    timezone: string
+    url: string
+    meta_title?: string
+    meta_description?: string
+    og_image?: string
+    og_title?: string
+    og_description?: string
+    twitter_image?: string
+    twitter_title?: string
+    twitter_description?: string
+    navigation: Array<{
+      label: string
+      url: string
+    }>
+    secondary_navigation: Array<{
+      label: string
+      url: string
+    }>
+  }
+
   export interface GhostContentAPIOptions {
     url: string
     key: string
@@ -92,6 +122,10 @@ declare module '@tryghost/content-api' {
     tags: {
       browse(options?: BrowseOptions): Promise<GhostTag[]>
       read(identifier: ReadOptions): Promise<GhostTag>
+    }
+    
+    settings: {
+      browse(): Promise<GhostSettings>
     }
   }
 }

@@ -3,6 +3,7 @@ import type { GhostPost } from '@tryghost/content-api'
 
 const route = useRoute()
 const { getSinglePost } = useGhost()
+const { siteTitle, getMetaTitle } = useGhostSettings()
 
 const slug = computed(() => route.params.slug as string)
 
@@ -13,9 +14,6 @@ const { data: post, pending, error } = await useAsyncData<GhostPost | null>(
     server: true
   }
 )
-onMounted(() => {
-  console.log('post', post.value)
-})
 
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { 
@@ -23,7 +21,7 @@ const formatDate = (dateString: string) => {
     month: 'long', 
     day: 'numeric' 
   }
-  return new Date(dateString).toLocaleDateString('en-US', options)
+  return new Date(dateString).toLocaleDateString('es-ES', options)
 }
 
 const primaryAuthor = computed(() => {
@@ -32,32 +30,85 @@ const primaryAuthor = computed(() => {
 
 // SEO Meta tags
 useHead(() => ({
-  title: post.value ? `${post.value.title} - My Blog` : 'Post - My Blog',
+  title: post.value?.meta_title || getMetaTitle(post.value?.title || 'Post'),
   meta: [
+    // Basic meta tags
     { 
       name: 'description', 
-      content: post.value?.excerpt || 'Read this post on our blog' 
+      content: post.value?.meta_description || post.value?.excerpt || 'Read this post on our blog' 
     },
     { 
+      name: 'author', 
+      content: post.value?.primary_author?.name || '' 
+    },
+    
+    // Open Graph meta tags (using Ghost's dedicated OG fields)
+    { 
       property: 'og:title', 
-      content: post.value?.title || 'Post' 
+      content: post.value?.og_title || post.value?.title || 'Post' 
     },
     { 
       property: 'og:description', 
-      content: post.value?.excerpt || '' 
+      content: post.value?.og_description || post.value?.excerpt || '' 
     },
     { 
       property: 'og:image', 
-      content: post.value?.feature_image || '' 
+      content: post.value?.og_image || post.value?.feature_image || '' 
     },
     { 
       property: 'og:type', 
       content: 'article' 
     },
+    { 
+      property: 'og:url', 
+      content: post.value?.url || '' 
+    },
+    { 
+      property: 'og:site_name', 
+      content: siteTitle.value 
+    },
     {
       property: 'article:published_time',
       content: post.value?.published_at || ''
+    },
+    {
+      property: 'article:modified_time',
+      content: post.value?.updated_at || ''
+    },
+    {
+      property: 'article:author',
+      content: post.value?.primary_author?.name || ''
+    },
+    {
+      property: 'article:section',
+      content: post.value?.primary_tag?.name || ''
+    },
+    
+    // Twitter Card meta tags (using Ghost's dedicated Twitter fields)
+    { 
+      name: 'twitter:card', 
+      content: 'summary_large_image' 
+    },
+    { 
+      name: 'twitter:title', 
+      content: post.value?.twitter_title || post.value?.og_title || post.value?.title || 'Post' 
+    },
+    { 
+      name: 'twitter:description', 
+      content: post.value?.twitter_description || post.value?.og_description || post.value?.excerpt || '' 
+    },
+    { 
+      name: 'twitter:image', 
+      content: post.value?.twitter_image || post.value?.og_image || post.value?.feature_image || '' 
+    },
+    {
+      name: 'twitter:creator',
+      content: post.value?.primary_author?.twitter || ''
     }
+  ],
+  link: [
+    // Canonical URL
+    ...(post.value?.canonical_url ? [{ rel: 'canonical', href: post.value.canonical_url }] : [])
   ]
 }))
 </script>
@@ -127,14 +178,19 @@ useHead(() => ({
 
       <!-- Tags -->
       <div v-if="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2 mb-8">
-        <UBadge
+        <NuxtLink
           v-for="tag in post.tags"
           :key="tag.id"
-          color="primary"
-          variant="soft"
+          :to="`/tag/${tag.slug}`"
         >
-          {{ tag.name }}
-        </UBadge>
+          <UBadge
+            color="primary"
+            variant="soft"
+            class="hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors cursor-pointer"
+          >
+            {{ tag.name }}
+          </UBadge>
+        </NuxtLink>
       </div>
 
       <!-- Content -->

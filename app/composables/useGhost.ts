@@ -1,4 +1,4 @@
-import GhostContentAPI, { type GhostPost } from '@tryghost/content-api'
+import GhostContentAPI, { type GhostPost, type GhostTag, type GhostSettings } from '@tryghost/content-api'
 
 let api: GhostContentAPI | null = null
 
@@ -46,9 +46,57 @@ export function useGhost() {
     }
   }
 
+  const getSettings = async (): Promise<GhostSettings | null> => {
+    try {
+      // Use the official Ghost Content API client settings.browse() method
+      return await api.settings.browse()
+    } catch (error) {
+      console.error('Error fetching settings:', error)
+      return null
+    }
+  }
+
+  const getPostsByTag = async (tagSlug: string): Promise<GhostPost[]> => {
+    try {
+      return await api.posts.browse({
+        filter: `tag:${tagSlug}`,
+        include: 'tags,authors',
+        fields: 'id,title,slug,excerpt,feature_image,published_at,reading_time',
+        limit: 100
+      })
+    } catch (error) {
+      console.error('Error fetching posts by tag:', error)
+      return []
+    }
+  }
+
+  const getTag = async (tagSlug: string): Promise<GhostTag | null> => {
+    try {
+      return await api.tags.read({ slug: tagSlug })
+    } catch (error) {
+      console.error('Error fetching tag:', error)
+      return null
+    }
+  }
+
+  const getTags = async (): Promise<GhostTag[]> => {
+    try {
+      return await api.tags.browse({
+        order: 'name ASC'
+      })
+    } catch (error) {
+      console.error('Error fetching tags:', error)
+      return []
+    }
+  }
+
   return {
     getPosts,
-    getSinglePost
+    getSinglePost,
+    getSettings,
+    getPostsByTag,
+    getTag,
+    getTags
   }
 }
 
