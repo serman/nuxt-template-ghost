@@ -5,6 +5,9 @@ const route = useRoute()
 const { getSinglePost } = useGhost()
 const { siteTitle, getMetaTitle } = useGhostSettings()
 
+// Initialize Ghost interactive cards (toggles, etc.)
+useGhostCards()
+
 const slug = computed(() => route.params.slug as string)
 
 const { data: post, pending, error } = await useAsyncData<GhostPost | null>(
@@ -15,6 +18,9 @@ const { data: post, pending, error } = await useAsyncData<GhostPost | null>(
   }
 )
 
+onMounted(() => {
+  console.log('post', post.value)
+})
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { 
     year: 'numeric', 

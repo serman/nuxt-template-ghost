@@ -646,6 +646,48 @@
 .kg-toggle-content {
   padding: 2rem 0;
   color: var(--color-primary-text);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-content {
+  max-height: 5000px; /* Large enough for any content */
+  opacity: 1;
+  padding: 2rem 0;
+}
+
+.kg-toggle-card[data-kg-toggle-state="close"] .kg-toggle-content {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+.kg-toggle-card-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.kg-toggle-card-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.kg-toggle-card[data-kg-toggle-state="open"] .kg-toggle-card-icon {
+  transform: rotate(180deg);
 }
 
 /* File Cards */
