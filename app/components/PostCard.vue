@@ -18,7 +18,7 @@ const formatDate = (dateString: string) => {
 <template>
   <UCard class="flex flex-col h-full hover:shadow-lg transition-shadow">
     <template #header>
-      <NuxtLink :to="`/${post.slug}`">
+      <NuxtLink :to="`/posts/${post.slug}`">
         <NuxtImg
           v-if="post.feature_image"
           :src="post.feature_image"
@@ -33,7 +33,7 @@ const formatDate = (dateString: string) => {
     </template>
 
     <div class="flex-grow">
-      <NuxtLink :to="`/${post.slug}`">
+      <NuxtLink :to="`/posts/${post.slug}`">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-500 transition-colors">
           {{ post.title }}
         </h2>
@@ -73,7 +73,7 @@ const formatDate = (dateString: string) => {
 
     <template #footer>
       <UButton
-        :to="`/${post.slug}`"
+        :to="`/posts/${post.slug}`"
         variant="soft"
         block
       >

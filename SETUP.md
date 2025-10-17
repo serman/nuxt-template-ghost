@@ -4,7 +4,7 @@ This is a Nuxt 4 blog application using Ghost as a headless CMS with server-side
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 22+ installed
 - A Ghost instance (self-hosted or Ghost Pro)
 - Ghost Content API credentials
 
@@ -50,7 +50,11 @@ blog1/
 │   │   └── default.vue         # Main layout with header/footer
 │   ├── pages/
 │   │   ├── index.vue           # Homepage with post listing
-│   │   └── [slug].vue          # Dynamic post detail page
+│   │   ├── posts/
+│   │   │   └── [slug].vue      # Dynamic post detail page
+│   │   ├── [slug].vue          # Dynamic page detail page
+│   │   └── tag/
+│   │       └── [slug].vue      # Dynamic tag pages
 │   └── composables/
 │       └── useGhost.ts         # Ghost API integration composable
 ├── ghost.d.ts                  # TypeScript definitions for Ghost API
@@ -139,7 +143,8 @@ return await api.posts.browse({
 ### Modify Layout
 - Header/Footer: `app/layouts/default.vue`
 - Homepage: `app/pages/index.vue`
-- Post detail: `app/pages/[slug].vue`
+- Post detail: `app/pages/posts/[slug].vue`
+- Tag pages: `app/pages/tag/[slug].vue`
 
 ### Add More Fields
 To fetch additional Ghost post fields, update the `fields` parameter in `useGhost.ts`:

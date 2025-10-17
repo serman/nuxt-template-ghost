@@ -14,11 +14,15 @@ export default defineSitemapEventHandler(async () => {
   })
 
   try {
-    // Fetch all posts and tags in parallel
-    const [posts, tags] = await Promise.all([
+    // Fetch all posts, pages, and tags in parallel
+    const [posts, pages, tags] = await Promise.all([
       api.posts.browse({
         limit: 'all',
         fields: 'slug,updated_at,published_at,feature_image'
+      }) as Promise<GhostPost[]>,
+      api.pages.browse({
+        limit: 'all',
+        fields: 'slug,updated_at,published_at'
       }) as Promise<GhostPost[]>,
       api.tags.browse({
         limit: 'all',
@@ -35,7 +39,7 @@ export default defineSitemapEventHandler(async () => {
       },
       // Posts - transform Ghost posts to sitemap URLs
       ...posts.map((post: GhostPost) => ({
-        loc: `/${post.slug}`,
+        loc: `/posts/${post.slug}`,
         lastmod: post.updated_at,
         changefreq: 'weekly' as const,
         priority: 0.8,
@@ -43,6 +47,13 @@ export default defineSitemapEventHandler(async () => {
         images: post.feature_image ? [{
           loc: post.feature_image
         }] : undefined
+      })),
+      // Pages - Ghost static pages
+      ...pages.map((page: GhostPost) => ({
+        loc: `/page/${page.slug}`,
+        lastmod: page.updated_at,
+        changefreq: 'monthly' as const,
+        priority: 0.7
       })),
       // Tag pages
       ...tags.map((tag: GhostTag) => ({

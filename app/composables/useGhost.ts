@@ -90,13 +90,36 @@ export function useGhost() {
     }
   }
 
+  const getPages = async (): Promise<GhostPost[]> => {
+    try {
+      return await api.pages.browse({
+        limit: 100,
+        fields: 'id,title,slug,html,feature_image,published_at,updated_at'
+      })
+    } catch (error) {
+      console.error('Error fetching pages:', error)
+      return []
+    }
+  }
+
+  const getSinglePage = async (slug: string): Promise<GhostPost | null> => {
+    try {
+      return await api.pages.read({ slug })
+    } catch (error) {
+      console.error('Error fetching page:', error)
+      return null
+    }
+  }
+
   return {
     getPosts,
     getSinglePost,
     getSettings,
     getPostsByTag,
     getTag,
-    getTags
+    getTags,
+    getPages,
+    getSinglePage
   }
 }
 

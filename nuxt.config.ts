@@ -21,8 +21,12 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    domains: [process.env.NUXT_PUBLIC_GHOST_URL || ""],
-    provider: "ipx"
+    domains: [
+      "ghost-blog1.vps2.eclectico.net",
+      "static.ghost.org",
+      "mages.unsplash.com",
+    ],
+    provider: "ipx",
   },
   nitro: {
     prerender: {
