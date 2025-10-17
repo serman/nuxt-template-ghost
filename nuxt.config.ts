@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxtjs/sitemap",
   ],
+  experimental: {
+    payloadExtraction:true
+  },
 
   css: ["~/assets/css/main.css", "~/assets/css/ghost.css"],
 
@@ -24,12 +27,9 @@ export default defineNuxtConfig({
     domains: [
       "ghost-blog1.vps2.eclectico.net",
       "static.ghost.org",
-      "mages.unsplash.com",
+      "images.unsplash.com",
     ],
-    provider:
-      process.env.NODE_ENV === "production"
-        ? "netlify"
-        : "ipx",
+    provider: process.env.NODE_ENV === "production" ? "netlify" : "ipx",
   },
   nitro: {
     prerender: {

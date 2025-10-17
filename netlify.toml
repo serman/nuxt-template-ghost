@@ -1,0 +1,4 @@
+[images]
+  remote_images = [ "ghost-blog1.vps2.eclectico.net/.*",
+      "static.ghost.org/.*",
+      "images.unsplash.com/.*"]
