@@ -8,7 +8,7 @@ function getAPI() {
   }
 
   const config = useRuntimeConfig()
-  
+  console.log(config.public.ghostUrl, config.public.ghostContentApiKey);
   api = new GhostContentAPI({
     url: config.public.ghostUrl as string,
     key: config.public.ghostContentApiKey as string,
