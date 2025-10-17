@@ -19,16 +19,13 @@ const { data: post, pending, error } = await useAsyncData<GhostPost | null>(
   }
 )
 
-onMounted(() => {
-  console.log('post', post.value)
-})
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
   }
-  return new Date(dateString).toLocaleDateString('es-ES', options)
+  return new Date(dateString).toLocaleDateString('en-US', options)
 }
 
 const primaryAuthor = computed(() => {
