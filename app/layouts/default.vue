@@ -15,7 +15,7 @@ useHead(() => ({
 
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- <AppHeader /> -->
+    <AppHeader />
 
     <main class="py-8">
       <UContainer>
@@ -23,7 +23,7 @@ useHead(() => ({
       </UContainer>
     </main>
 
-    <!-- <AppFooter /> -->
+    <AppFooter />
   </div>
 </template>
 
