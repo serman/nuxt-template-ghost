@@ -26,7 +26,10 @@ export default defineNuxtConfig({
       "static.ghost.org",
       "mages.unsplash.com",
     ],
-    provider: "ipx",
+    provider:
+      process.env.NODE_ENV === "production"
+        ? "netlify"
+        : "ipx",
   },
   nitro: {
     prerender: {
