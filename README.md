@@ -2,7 +2,7 @@
 
 A modern, SSR-enabled blog using Ghost as a headless CMS, built with Nuxt 4 and Nuxt UI.
 
-**🚀 [Live Demo](https://nuxt-template-ghost.netlify.app/)**
+**🚀 [Live Demo](https://nuxt-static-template-ghost.netlify.app/)**
 
 The development has been heavly assited by Cursor AI and I have reviewed the code and made some changes to fit my needs.
 
