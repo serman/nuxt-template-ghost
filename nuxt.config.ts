@@ -29,7 +29,7 @@ export default defineNuxtConfig({
       "static.ghost.org",
       "images.unsplash.com",
     ],
-    provider: process.env.NODE_ENV === "production" ? "netlify" : "ipx",
+    provider: process.env.NODE_ENV === "production" ? "ipx" : "ipx",
   },
   routeRules: {
     '/**':{

@@ -53,6 +53,10 @@ export function useGhostContent() {
           // Update src with optimized URL
           $img.attr('src', optimizedSrc)
           
+          // Remove srcset and sizes attributes since we're using a single optimized image
+          $img.removeAttr('srcset')
+          $img.removeAttr('sizes')
+          
           // Add lazy loading if not present
           if (!$img.attr('loading')) {
             $img.attr('loading', 'lazy')
